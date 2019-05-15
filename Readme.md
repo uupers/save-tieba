@@ -12,6 +12,7 @@ Tieba => Markdown
 
 ```bash
 yarn add @vutex/wapp2md
+npm install @vutex/wapp2md
 ```
 
 然后输入帖子 `id` 就能下载并转换为 `markdown` 文件了.

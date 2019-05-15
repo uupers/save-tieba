@@ -1,0 +1,15 @@
+{
+    "name": "@vutex/tieba2md",
+    "version": "0.2.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "ts-node ./test/page.ts",
+        "build": "yarn install && tsc -b",
+        "upload": "yarn build && npm publish --access public"
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.3",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4"
+    }
+}

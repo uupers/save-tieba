@@ -1,6 +1,7 @@
 {
     "references": [
-        { "path": "./projects/wapp2md/" }
+        { "path": "./projects/wapp2md/" },
+        { "path": "./projects/web2md/" }
     ],
     "files": []
 }
