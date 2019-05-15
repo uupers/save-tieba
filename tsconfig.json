@@ -1,0 +1,8 @@
+{
+    "references": [
+      { "path": "./packages/vuepress-plugin-component-container" },
+      { "path": "./packages/vuepress-plugin-math" },
+      { "path": "./packages/vuepress-theme-vutex" },
+    ],
+    "files": []
+  }

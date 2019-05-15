@@ -1,0 +1,22 @@
+# System
+.DS_Store
+
+# IDE
+.idea
+.vscode
+*.iml
+
+# Build
+node_modules/
+**/static/
+**/dist/
+**/out/
+
+# log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Tools
+yarn.lock
+package-lock.json

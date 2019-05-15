@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "semicolon": [true, "never"],
+    "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+    "indent": 4
+  }
+}
