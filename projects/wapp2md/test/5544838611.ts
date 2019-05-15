@@ -4,7 +4,7 @@ import { writeFileSync } from 'fs'
 
 import { parserFloor } from '../source'
 
-let options = {
+const options = {
     uri: 'http://tieba.baidu.com/mo/m?kz=5544838611',
     transform: function (body: string) {
         return cheerio.load(body, { xmlMode: true })
