@@ -1,4 +1,9 @@
 {
+    "name": "@vutex/wapp2md",
+    "version": "0.1.0",
+    "scripts": {
+        "test": "ts-node ./test/5544838611.ts"
+    },
     "dependencies": {
         "cheerio": "^1.0.0-rc.3",
         "request": "^2.88.0",
