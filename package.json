@@ -7,13 +7,15 @@
         "lint": "tslint projects/**/*.ts --fix"
     },
     "devDependencies": {
+        "@types/cheerio": "^0.22.11",
+        "@types/circular-json": "^0.4.0",
         "@types/node": "^12.0.2",
         "@types/request": "^2.48.1",
-        "@types/cheerio": "^0.22.11",
         "@types/request-promise": "^4.1.43"
     },
     "dependencies": {
         "chalk": "^2.4.2",
+        "circular-json": "^0.5.9",
         "commander": "^2.19.0",
         "semver": "^5.6.0",
         "ts-loader": "^5.3.2",

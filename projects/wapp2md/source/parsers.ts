@@ -14,6 +14,16 @@ function fixText(s: string) {
     return s.substring(s.indexOf('楼. ') + 3) // 因为是三个字符
 }
 
+function parserTable(o: CheerioElement) {
+    console.log(o.children)
+    return ''
+}
+
+function parserSpan(o: CheerioElement) {
+    console.log(o.children)
+    return ''
+}
+
 function parserHead(o: CheerioElement) {
     switch (o.type) {
         case 'text':
@@ -31,7 +41,18 @@ function parserHead(o: CheerioElement) {
 function parserTail(o: CheerioElement) {
     switch (o.type) {
         case 'tag':
-            console.log(o.children)
+            const part = o.firstChild.children
+            switch (part.length) {
+                case 0: return ''
+                case 2:
+                    const who = part[0].firstChild.firstChild.firstChild.data
+                    const when = part[0].lastChild.firstChild.data
+                    return `- Author: ${who}\n- Date: ${when}`
+                default:
+                    //调试
+                    //console.log(o)
+                    break
+            }
         default:
             //调试
             //console.log(o)
@@ -48,9 +69,7 @@ export function parserLine(o: CheerioElement) {
                 case 'br': return '\n\n'
                 case 'a': return fixLink(o.attribs.href)
                 case 'img': return fixEmoji(o.attribs.src)
-                case 'tr':
-                    console.log(o.children)
-                    return '';
+                case 'span': return parserSpan(o)
             }
         default:
             //调试
@@ -65,6 +84,5 @@ export function parserFloor(i: number, o: CheerioElement) {
     for (let x = 1; x < cells.length - 1; x++) {
         element = element.concat(parserLine(cells[x]))
     }
-    parserTail(cells[cells.length - 1])
-    return element.join('')
+    return element.concat(parserTail(cells.slice(-1)[0])).join('')
 }
