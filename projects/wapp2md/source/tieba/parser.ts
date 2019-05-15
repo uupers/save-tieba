@@ -1,11 +1,23 @@
-function parseHead(o: CheerioElement, info: object) {
-    const s = o.firstChild.data
-    console.log(s.substring(s.indexOf('.') + 2))
-    return s.substring(s.indexOf('.') + 2)
+class Info {
+    title?: string
+    click?: number
+    reply?: number
+    author?: string
+    date?: string
 }
 
-function parseTail(o: CheerioElement, info: object) {
 
+function parseHead(o: CheerioElement, info: Info) {
+    const s = o.firstChild.data
+    info.title = s.substring(s.indexOf('.') + 2)
+}
+
+function parseTail(o: CheerioElement, info: Info) {
+    const s = o.firstChild.data.split(' ') // fuck!!! 全角空格!
+    info.click = parseInt(s[0].substring(1))
+    info.reply = parseInt(s[1].substring(1))
+    info.author = s[2]
+    info.date = s[3]
 }
 
 
@@ -15,10 +27,12 @@ export function parseFloor(i: number, o: CheerioElement) {
         case 'div':
             if (!['i', 'i x'].includes(o.attribs.class)) { return '' }
             parseHead(o.firstChild, info)
-            return ''
+            parseTail(o.lastChild, info)
+            console.log(info)
+            return info
         default:
             //调试
             //console.log(o)
-            return ''
+            break
     }
 }
