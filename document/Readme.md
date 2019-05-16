@@ -6,10 +6,8 @@
 
 ```arc
 <Boutique>
-* link
-
-
-
+* title: #string
+  id   : #number
 ```
 
 

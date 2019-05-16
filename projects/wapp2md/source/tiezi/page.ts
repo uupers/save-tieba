@@ -1,6 +1,6 @@
 import * as request from 'request-promise'
 import * as cheerio from 'cheerio'
-import { parserFloor } from './parsers'
+import { parseFloor } from './parser'
 
 
 async function getSelector(id: number, offset: number) {
@@ -14,16 +14,16 @@ async function getSelector(id: number, offset: number) {
     return selector
 }
 
-export async function parserPage(id: number) {
+export async function parsePage(id: number) {
     async function getArray(page: number) {
         const selector = await getSelector(id, 30 * page) // 当前 API 单次获取上限为 30
         const floors = selector('body > div > div:nth-child(4)')
-        return floors.children().map(parserFloor).toArray()
+        return floors.children().map(parseFloor).toArray()
     }
     const selector = await getSelector(id, 0)
     const floors = selector('body > div > div:nth-child(4)')
     const pages = selector('body > div > div:nth-child(4) > form > div > input[type=text]:nth-child(7)')
-    let list = floors.children().map(parserFloor).toArray()
+    let list = floors.children().map(parseFloor).toArray()
     // first catch
     for (let index = 1; index < parseInt(pages.attr().value); index++) {
         list = await getArray(index).then(_ => { return list.concat(_) })

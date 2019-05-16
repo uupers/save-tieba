@@ -7,4 +7,3 @@ parseTieba('数学')
 
 parseTieba('galgame')
     .then($ => { writeFileSync(`${__dirname}/galgame 吧.json`, JSON.stringify($, null, 4)) })
-    .catch($ => console.log($))

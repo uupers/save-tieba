@@ -19,12 +19,12 @@ function parserTable(o: CheerioElement) {
     return ''
 }
 
-function parserSpan(o: CheerioElement) {
+function parseSpan(o: CheerioElement) {
     console.log(o.children)
     return ''
 }
 
-function parserHead(o: CheerioElement) {
+function parseHead(o: CheerioElement) {
     switch (o.type) {
         case 'text':
             const s = o.data.indexOf('楼. ')
@@ -38,7 +38,7 @@ function parserHead(o: CheerioElement) {
     }
 }
 
-function parserTail(o: CheerioElement) {
+function parseTail(o: CheerioElement) {
     switch (o.type) {
         case 'tag':
             const part = o.firstChild.children
@@ -61,7 +61,7 @@ function parserTail(o: CheerioElement) {
 }
 
 
-export function parserLine(o: CheerioElement) {
+export function parseLine(o: CheerioElement) {
     switch (o.type) {
         case 'text': return o.data
         case 'tag':
@@ -69,7 +69,7 @@ export function parserLine(o: CheerioElement) {
                 case 'br': return '\n\n'
                 case 'a': return fixLink(o.attribs.href)
                 case 'img': return fixEmoji(o.attribs.src)
-                case 'span': return parserSpan(o)
+                case 'span': return parseSpan(o)
             }
         default:
             //调试
@@ -78,11 +78,11 @@ export function parserLine(o: CheerioElement) {
     }
 }
 
-export function parserFloor(i: number, o: CheerioElement) {
+export function parseFloor(i: number, o: CheerioElement) {
     const cells = o.children
-    let element: string[] = [parserHead(cells[0])]
+    let element: string[] = [parseHead(cells[0])]
     for (let x = 1; x < cells.length - 1; x++) {
-        element = element.concat(parserLine(cells[x]))
+        element = element.concat(parseLine(cells[x]))
     }
-    return element.concat(parserTail(cells.slice(-1)[0])).join('')
+    return element.concat(parseTail(cells.slice(-1)[0])).join('')
 }
