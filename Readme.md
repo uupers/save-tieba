@@ -20,7 +20,7 @@ npm install @vutex/wapp2md
 ```typescript
 import { writeFileSync } from 'fs'
 import { parserPage } from '@vutex/wapp2md'
-parserPage(5544838611).then($ => { writeFileSync(`${__dirname}/5544838611.md`, $) })
+parseTiezi(5544838611).then($ => { writeFileSync(`${__dirname}/5544838611.md`, $) })
 ```
 
 网页: http://tieba.baidu.com/p/5544838611
@@ -29,3 +29,11 @@ parserPage(5544838611).then($ => { writeFileSync(`${__dirname}/5544838611.md`, $
 
 效果: https://github.com/uupers/save-tieba/blob/master/projects/wapp2md/test/5544838611.md
 
+
+获取贴吧精品编号:
+
+```typescript
+parseTieba('数学').then($ => { writeFileSync(`${__dirname}/数学吧.json`, JSON.stringify($, null, 4)) })
+```
+
+效果: https://github.com/uupers/save-tieba/blob/master/projects/wapp2md/test/数学吧.json
